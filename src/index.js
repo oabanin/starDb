@@ -1,12 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+class SwapiService {
 
-ReactDOM.render(<App />, document.getElementById('root'));
+    _apiBase = 'https://swapi.co/api';
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+    async getResource(url) {
+
+        const res = await fetch(`${this._apiBase}${url}`);
+
+        if (!res.ok) {
+            throw new Error(`Could not fetch ${url}, 
+            received ${res.status}`)
+        }
+        return await res.json();
+
+    }
+
+        async getAllPeople(){
+        const res = this.getResource(`/people/`);
+        console.log(res.results);
+        return res.results;
+    }
+
+    async getPerson(id){
+        return this.getResource(`/people/${id}`);
+    }
+
+
+}
+
+const swapi = new SwapiService();
+swapi.getAllPeople().then(console.log)
+
