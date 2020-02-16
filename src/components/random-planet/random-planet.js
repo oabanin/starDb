@@ -4,6 +4,8 @@ import './random-planet.css';
 
 import SwapiService from '../../services/swapi-service';
 import Spinner from '../spinner';
+import ErrorIndicator from '../error-indicator';
+
 
 export default class RandomPlanet extends Component {
 
@@ -11,25 +13,37 @@ export default class RandomPlanet extends Component {
 
   state = {
     planet: {},
-    loading: true
+    loading: true,
+    error: false
   }
 
   constructor() {
     super();
     this.updatePlanet();
+    setInterval(this.updatePlanet, 2500);
+    
   }
 
   onPlanetLoaded = (planet) => {
-    this.setState({ planet, loading: false })
+    this.setState({
+      planet,
+      loading: false,
+      error: false
+    })
   }
 
   onError = (err) => {
-    console.log('catched ', err)
+    console.log('catched ', err);
+    this.setState({
+      error: true,
+      loading: false
+    })
   }
 
-  updatePlanet() {
-    //const id = Math.floor(Math.random() * 20) + 1;
-    const id = 22222;
+  updatePlanet = () => {
+    console.log('update planet');
+    const id = Math.floor(Math.random() * 20) + 1;
+    //const id = 22222;
     this.swapiService
       .getPlanet(id)
       .then(this.onPlanetLoaded)
@@ -39,22 +53,27 @@ export default class RandomPlanet extends Component {
 
 
   render() {
-    const { planet, loading } = this.state;
+    const { planet, loading, error } = this.state;
 
+    const hasData = !(loading || error);
+
+    const errorMessage = error ? <ErrorIndicator /> : null;
+    const spinner = loading ? <Spinner /> : null;
+    const content = hasData ? <PlanetView planet={planet} /> : null;
 
     return (
       <div className="random-planet jumbotron rounded">
-        {loading ? <Spinner /> : null}
-        {!loading ? <PlanetView planet={planet} /> : null}       
+        {errorMessage}
+        {spinner}
+        {content}
       </div>
-
-    ); 
+    );
   }
 }
 
-const PlanetView = ({planet}) => {
+const PlanetView = ({ planet }) => {
 
-  const {  id, name, population, rotationPeriod, diameter } = planet;
+  const { id, name, population, rotationPeriod, diameter } = planet;
 
   return (
     <React.Fragment>
