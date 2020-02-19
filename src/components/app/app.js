@@ -11,7 +11,7 @@ export default class App extends React.Component {
 
   state = {
     showRandomPlanet: true,
-    selectedPerson: 5
+    selectedPerson: null
   };
 
   onItemSelected = (id) => {
