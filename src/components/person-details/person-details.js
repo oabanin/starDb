@@ -9,7 +9,7 @@ export default class PersonDetails extends Component {
 
   state = {
     person: null,
-    loading: false
+    loading: null
   }
 
   componentDidMount() {
@@ -18,6 +18,7 @@ export default class PersonDetails extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.personId !== this.props.personId) {
+      this.setState({loading: true});
       this.updatePerson();
     }
 
@@ -28,7 +29,7 @@ export default class PersonDetails extends Component {
     if (!personId) {
       return
     }
-    this.setState({loading: true});
+    
 
     this.swapiService
       .getPerson(personId)
@@ -39,8 +40,7 @@ export default class PersonDetails extends Component {
 
   render() {
 
-
-    if (!this.state.person) {
+    if (!this.state.person && !this.state.loading) {
       return <span>Select person from a list</span>;
     }
 
@@ -56,6 +56,7 @@ const Person = ({ person: { id, name, gender,
   birthYear, eyeColor } }) => {
   return (<React.Fragment>
     <img className="person-image"
+      alt={name}
       src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} />
     <div className="card-body">
       <h4>{name}</h4>

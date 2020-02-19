@@ -25,12 +25,11 @@ export default class RandomPlanet extends Component {
 
   componentDidMount(){
     this.updatePlanet();  //THis is bad practice - side effects of constructor 
-    //this.interval = setInterval(this.updatePlanet, 5000);
-    //clearInterval() ?? where???
+    this.interval = setInterval(this.updatePlanet, 5000);
   }
 
   componentWillUnmount(){
-    console.log('componentWillMount');
+    clearInterval(this.interval);
   }
 
   onPlanetLoaded = (planet) => {
@@ -50,7 +49,6 @@ export default class RandomPlanet extends Component {
   }
 
   updatePlanet = () => {
-    console.log('update planet');
     const id = Math.floor(Math.random() * 20) + 1;
     //const id = 22222;
     this.swapiService
@@ -62,7 +60,6 @@ export default class RandomPlanet extends Component {
 
 
   render() {
-    console.log('render');
     const { planet, loading, error } = this.state;
 
     const hasData = !(loading || error);
@@ -88,6 +85,7 @@ const PlanetView = ({ planet }) => {
   return (
     <React.Fragment>
       <img className="planet-image"
+      alt={name}
         src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} />
       <div>
         <h4>{name}</h4>
