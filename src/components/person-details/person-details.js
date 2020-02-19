@@ -39,7 +39,7 @@ export default class PersonDetails extends Component {
   }
 
   render() {
-
+    
     if (!this.state.person && !this.state.loading) {
       return <span>Select person from a list</span>;
     }
