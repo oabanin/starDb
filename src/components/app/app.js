@@ -28,7 +28,6 @@ export default class App extends React.Component {
   };
 
   componentDidCatch(){
-    console.log('componentDidCatch');
     this.setState({hasError:true});
   }
 
