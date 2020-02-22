@@ -2,7 +2,7 @@ import React from 'react';
 
 import Header from '../header';
 import RandomPlanet from '../random-planet';
-
+import Row from '../row';
 import ItemList from '../item-list';
 import ItemDetails from '../item-details';
 import ErrorButton from '../error-button';
@@ -48,20 +48,38 @@ export default class App extends React.Component {
       <RandomPlanet /> :
       null;
 
+    const { getPerson, getStarship, getPersonImage, getStarshipImage } = this.swapiService;
+
+    const personDetails = (
+      <ItemDetails
+        itemId={11}
+        getData={getPerson}
+        getImageUrl={getPersonImage}
+      />
+    )
+
+    const starshipDetails = (
+      <ItemDetails
+        itemId={5}
+        getData={getStarship}
+        getImageUrl={getStarshipImage}
+      />
+    )
+
     return (
       <>
-      
+
         <Header />
-        {planet}
+        {/* {planet}
         <button
           className="toggle-planet btn btn-warning btn-lg"
           
           onClick={this.toggleRandomPlanet}>
           Toggle Random Planet
         </button>
-        <ErrorButton />
+        <ErrorButton /> */}
 
-         <PeoplePage /> 
+        {/* <PeoplePage />  */}
 
         {/* <div className="row mb-2">
           <div className="col-md-6">
@@ -91,7 +109,7 @@ export default class App extends React.Component {
           </div>
         </div> */}
 
-
+        <Row left={starshipDetails} right={personDetails} />
       </>
     );
   };

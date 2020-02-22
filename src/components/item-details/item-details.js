@@ -9,7 +9,8 @@ export default class PersonDetails extends Component {
 
   state = {
     person: null,
-    loading: null
+    loading: null,
+    image: null
   }
 
   componentDidMount() {
@@ -25,20 +26,22 @@ export default class PersonDetails extends Component {
   }
 
   updatePerson() {
-    const { personId } = this.props;
-    if (!personId) {
+    const { itemId, getData, getImageUrl } = this.props;
+    if (!itemId) {
       return
     }
     
-
-    this.swapiService
-      .getPerson(personId)
-      .then((person) => {
-        this.setState({ person, loading: false })
+    getData(itemId)
+      .then((itemObj) => {
+        console.log(itemObj);
+        this.setState({ person: itemObj, loading: false, 
+          image: getImageUrl(itemObj) 
+        })
       })
   }
 
   render() {
+    const {image} = this.state;
     
     if (!this.state.person && !this.state.loading) {
       return <span>Select person from a list</span>;
@@ -46,18 +49,19 @@ export default class PersonDetails extends Component {
 
     return (
       <div className="person-details card">
-        {this.state.loading ? <Spinner/>: <Person person={this.state.person} />}
+        {this.state.loading ? <Spinner/>: <Person person={this.state.person} image={image} />}
       </div>
     )
   }
 }
 
 const Person = ({ person: { id, name, gender,
-  birthYear, eyeColor } }) => {
+  birthYear, eyeColor }, image }) => {
+    console.log(image)
   return (<React.Fragment>
     <img className="person-image"
       alt={name}
-      src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} />
+      src={image} />
     <div className="card-body">
       <h4>{name}</h4>
       <ul className="list-group list-group-flush">
