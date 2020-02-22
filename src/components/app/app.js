@@ -63,7 +63,7 @@ export default class App extends React.Component {
 
          <PeoplePage /> 
 
-        <div className="row mb-2">
+        {/* <div className="row mb-2">
           <div className="col-md-6">
             <ItemList 
             getData = {this.swapiService.getAllPlanets} 
@@ -89,7 +89,7 @@ export default class App extends React.Component {
             <PersonDetails personId={this.state.selectedPerson} /><br/>
             <ErrorButton />
           </div>
-        </div>
+        </div> */}
 
 
       </>
