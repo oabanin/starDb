@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import ItemList from '../item-list';
-import PersonDetails from '../person-details';
+import ItemDetails from '../item-details';
 import ErrorIndicator from '../error-indicator';
 import ErrorButton from '../error-button';
 import SwapiService from '../../services/swapi-service';
@@ -12,7 +12,7 @@ import './people-page.css';
 class ErrorBoundary extends Component {
 
   state = {
-     hasError: false 
+    hasError: false
   }
   componentDidCatch(error, info) {
     this.setState({ hasError: true });
@@ -21,8 +21,7 @@ class ErrorBoundary extends Component {
     if (this.state.hasError) {
       return <ErrorIndicator />
     }
-
-    return this.props.children
+    return (<>{this.props.children}</>)
   }
 }
 
@@ -63,16 +62,16 @@ export default class PeoplePage extends Component {
 
     const personDetails = (
       <ErrorBoundary>
-    <PersonDetails personId={this.state.selectedPerson} />
-    <ErrorButton/>
-    </ErrorBoundary>
+        <ItemDetails personId={this.state.selectedPerson} />
+        <ErrorButton />
+      </ErrorBoundary>
     );
 
     return (
-      
-        <Row left={itemList} right={personDetails} />
-        
-      
+
+      <Row left={itemList} right={personDetails} />
+
+
     );
   }
 }
