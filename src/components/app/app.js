@@ -4,12 +4,14 @@ import Header from '../header';
 import RandomPlanet from '../random-planet';
 import Row from '../row';
 import ItemList from '../item-list';
-import ItemDetails from '../item-details';
+import ItemDetails, {Record} from '../item-details/item-details';
 import ErrorButton from '../error-button';
 import './app.css';
 import ErrorIndicator from '../error-indicator';
 import PeoplePage from '../people-page';
 import SwapiService from '../../services/swapi-service';
+
+
 
 export default class App extends React.Component {
 
@@ -54,8 +56,11 @@ export default class App extends React.Component {
       <ItemDetails
         itemId={11}
         getData={getPerson}
-        getImageUrl={getPersonImage}
-      />
+        getImageUrl={getPersonImage}>
+        <Record label="Gender" field="gender"/>
+        <Record label="Birth Year" field="birthYear"/>
+        <Record label="Eye Color" field="eyeColor"/>
+      </ItemDetails>
     )
 
     const starshipDetails = (
@@ -80,8 +85,8 @@ export default class App extends React.Component {
         <ErrorButton /> */}
 
         {/* <PeoplePage />  */}
-
-        {/* <div className="row mb-2">
+{/* 
+        <div className="row mb-2">
           <div className="col-md-6">
             <ItemList 
             getData = {this.swapiService.getAllPlanets} 

@@ -3,6 +3,18 @@ import SwapiService from "../../services/swapi-service";
 import './item-details.css';
 import Spinner from '../spinner';
 
+const Record = ({ item, field, label }) => {
+  return (
+    <li className="list-group-item">
+      <span className="term">{label}</span>
+      <span>{ field }</span>
+    </li>
+  );
+};
+
+export {
+  Record
+};
 export default class PersonDetails extends Component {
 
   swapiService = new SwapiService();
@@ -33,7 +45,7 @@ export default class PersonDetails extends Component {
     
     getData(itemId)
       .then((itemObj) => {
-        console.log(itemObj);
+
         this.setState({ person: itemObj, loading: false, 
           image: getImageUrl(itemObj) 
         })
@@ -46,18 +58,20 @@ export default class PersonDetails extends Component {
     if (!this.state.person && !this.state.loading) {
       return <span>Select person from a list</span>;
     }
-
+    let child = React.Children.map(this.props.children, (child)=>{
+      return child;
+    })
     return (
       <div className="person-details card">
-        {this.state.loading ? <Spinner/>: <Person person={this.state.person} image={image} />}
+        {this.state.loading ? <Spinner/>: <Person person={this.state.person} image={image} child={child} />}
       </div>
     )
   }
 }
 
 const Person = ({ person: { id, name, gender,
-  birthYear, eyeColor }, image }) => {
-    console.log(image)
+  birthYear, eyeColor }, image, child }) => {
+
   return (<React.Fragment>
     <img className="person-image"
       alt={name}
@@ -65,7 +79,8 @@ const Person = ({ person: { id, name, gender,
     <div className="card-body">
       <h4>{name}</h4>
       <ul className="list-group list-group-flush">
-        <li className="list-group-item">
+       {child}
+        {/* <li className="list-group-item">
           <span className="term">Gender</span>
           <span>{gender}</span>
         </li>
@@ -76,8 +91,9 @@ const Person = ({ person: { id, name, gender,
         <li className="list-group-item">
           <span className="term">Eye Color</span>
           <span>{eyeColor}</span>
-        </li>
+        </li> */}
       </ul>
     </div>
   </React.Fragment>);
 }
+
