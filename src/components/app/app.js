@@ -68,7 +68,11 @@ export default class App extends React.Component {
         itemId={5}
         getData={getStarship}
         getImageUrl={getStarshipImage}
-      />
+      >
+        <Record label="Model" field="model"/>
+        <Record label="Length" field="length"/>
+        <Record label="Cost" field="costInCredits"/>
+      </ItemDetails>
     )
 
     return (

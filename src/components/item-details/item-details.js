@@ -4,10 +4,11 @@ import './item-details.css';
 import Spinner from '../spinner';
 
 const Record = ({ item, field, label }) => {
+  console.log("COMPILE RECORD");
   return (
     <li className="list-group-item">
       <span className="term">{label}</span>
-      <span>{ field }</span>
+      <span>{ item[field] }</span>
     </li>
   );
 };
@@ -53,13 +54,14 @@ export default class PersonDetails extends Component {
   }
 
   render() {
-    const {image} = this.state;
+    console.log("COMPILE ITEM DETAIL");
+    const {image, person, loading} = this.state;
     
-    if (!this.state.person && !this.state.loading) {
+    if (!person && !loading) {
       return <span>Select person from a list</span>;
     }
     let child = React.Children.map(this.props.children, (child)=>{
-      return child;
+      return React.cloneElement(child, {item: person}) ;
     })
     return (
       <div className="person-details card">
