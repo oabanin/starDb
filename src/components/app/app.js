@@ -4,7 +4,7 @@ import Header from '../header';
 import RandomPlanet from '../random-planet';
 import Row from '../row';
 import ItemList from '../item-list';
-import ItemDetails, {Record} from '../item-details/item-details';
+import ItemDetails, { Record } from '../item-details/item-details';
 import ErrorButton from '../error-button';
 import './app.css';
 import ErrorIndicator from '../error-indicator';
@@ -57,9 +57,9 @@ export default class App extends React.Component {
         itemId={11}
         getData={getPerson}
         getImageUrl={getPersonImage}>
-        <Record label="Gender" field="gender"/>
-        <Record label="Birth Year" field="birthYear"/>
-        <Record label="Eye Color" field="eyeColor"/>
+        <Record label="Gender" field="gender" />
+        <Record label="Birth Year" field="birthYear" />
+        <Record label="Eye Color" field="eyeColor" />
       </ItemDetails>
     )
 
@@ -69,9 +69,9 @@ export default class App extends React.Component {
         getData={getStarship}
         getImageUrl={getStarshipImage}
       >
-        <Record label="Model" field="model"/>
-        <Record label="Length" field="length"/>
-        <Record label="Cost" field="costInCredits"/>
+        <Record label="Model" field="model" />
+        <Record label="Length" field="length" />
+        <Record label="Cost" field="costInCredits" />
       </ItemDetails>
     )
 
@@ -89,21 +89,18 @@ export default class App extends React.Component {
         <ErrorButton /> */}
 
         {/* <PeoplePage />  */}
-{/* 
+
         <div className="row mb-2">
           <div className="col-md-6">
-            <ItemList 
-            getData = {this.swapiService.getAllPlanets} 
-            onItemSelected={this.onItemSelected} 
-            renderItem={({name, gender, birthYear}) => `${name}, ${gender}, ${birthYear}`}
-            />
+            <ItemList
+              getData={this.swapiService.getAllPeople}
+              onItemSelected={this.onItemSelected}>
+              {(i) => `${i.name}, ${i.gender}, ${i.birthYear}`}
+            </ItemList>
           </div>
-          <div className="col-md-6">
-            <PersonDetails personId={this.state.selectedPerson} /><br/>
-            <ErrorButton />
-          </div>
-        </div>
 
+        </div>
+        {/* 
         <div className="row mb-2">
           <div className="col-md-6">
             <ItemList 
