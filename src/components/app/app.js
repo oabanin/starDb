@@ -67,8 +67,7 @@ export default class App extends React.Component {
       <ItemDetails
         itemId={5}
         getData={getStarship}
-        getImageUrl={getStarshipImage}
-      >
+        getImageUrl={getStarshipImage}>
         <Record label="Model" field="model" />
         <Record label="Length" field="length" />
         <Record label="Cost" field="costInCredits" />
@@ -93,7 +92,6 @@ export default class App extends React.Component {
         <div className="row mb-2">
           <div className="col-md-6">
             <ItemList
-              getData={this.swapiService.getAllPeople}
               onItemSelected={this.onItemSelected}>
               {(i) => `${i.name}, ${i.gender}, ${i.birthYear}`}
             </ItemList>
