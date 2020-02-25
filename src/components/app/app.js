@@ -76,8 +76,10 @@ export default class App extends React.Component {
 
     return (
       <>
-
         <Header />
+        <PersonList/>
+        <PersonDetails/>
+
         {/* {planet}
         <button
           className="toggle-planet btn btn-warning btn-lg"
