@@ -11,6 +11,8 @@ import ErrorIndicator from '../error-indicator';
 import PeoplePage from '../people-page';
 import SwapiService from '../../services/swapi-service';
 
+import {PeopleList as PersonList} from '../sw-components';
+import {PeopleDetails as PersonDetails} from '../sw-components';
 
 
 export default class App extends React.Component {
@@ -77,8 +79,8 @@ export default class App extends React.Component {
     return (
       <>
         <Header />
-        <PersonList/>
-        <PersonDetails/>
+        {/* <PersonList/>
+        <PersonDetails/> */}
 
         {/* {planet}
         <button
@@ -93,10 +95,10 @@ export default class App extends React.Component {
 
         <div className="row mb-2">
           <div className="col-md-6">
-            <ItemList
+            <PersonList
               onItemSelected={this.onItemSelected}>
               {(i) => `${i.name}, ${i.gender}, ${i.birthYear}`}
-            </ItemList>
+            </PersonList>
           </div>
 
         </div>

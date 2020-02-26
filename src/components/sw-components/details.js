@@ -1,5 +1,5 @@
 const PlanetDetails = () => {};
-const PeopleDetails = () => {};
+const PeopleDetails = () => (2);
 const StarshipDetails = () => {};
 
 export {
