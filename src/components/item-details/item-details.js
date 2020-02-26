@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import SwapiService from "../../services/swapi-service";
 import './item-details.css';
 import Spinner from '../spinner';
 
 const Record = ({ item, field, label }) => {
+
   return (
     <li className="list-group-item">
       <span className="term">{label}</span>
@@ -16,8 +16,6 @@ export {
   Record
 };
 export default class PersonDetails extends Component {
-
-  swapiService = new SwapiService();
 
   state = {
     person: null,
@@ -45,7 +43,6 @@ export default class PersonDetails extends Component {
     
     getData(itemId)
       .then((itemObj) => {
-
         this.setState({ person: itemObj, loading: false, 
           image: getImageUrl(itemObj) 
         })
@@ -53,7 +50,6 @@ export default class PersonDetails extends Component {
   }
 
   render() {
-    console.log("COMPILE ITEM DETAIL");
     const {image, person, loading} = this.state;
     
     if (!person && !loading) {
@@ -64,14 +60,16 @@ export default class PersonDetails extends Component {
     })
     return (
       <div className="person-details card">
-        {this.state.loading ? <Spinner/>: <Person person={this.state.person} image={image} child={child} />}
+        {this.state.loading ? <Spinner/>: <Person 
+        person={this.state.person} 
+        image={image} 
+        child={child} />}
       </div>
     )
   }
 }
 
-const Person = ({ person: { id, name, gender,
-  birthYear, eyeColor }, image, child }) => {
+const Person = ({ person: { name }, image, child }) => {
 
   return (<React.Fragment>
     <img className="person-image"

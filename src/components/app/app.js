@@ -11,8 +11,15 @@ import ErrorIndicator from '../error-indicator';
 import PeoplePage from '../people-page';
 import SwapiService from '../../services/swapi-service';
 
-import {PeopleList as PersonList} from '../sw-components';
-import {PeopleDetails as PersonDetails} from '../sw-components';
+import {
+  PeopleList as PersonList,
+  StarshipList,
+  PlanetList,
+  PlanetDetails,
+  PeopleDetails,
+  StarshipDetails
+} from '../sw-components';
+
 
 
 export default class App extends React.Component {
@@ -54,27 +61,27 @@ export default class App extends React.Component {
 
     const { getPerson, getStarship, getPersonImage, getStarshipImage } = this.swapiService;
 
-    const personDetails = (
-      <ItemDetails
-        itemId={11}
-        getData={getPerson}
-        getImageUrl={getPersonImage}>
-        <Record label="Gender" field="gender" />
-        <Record label="Birth Year" field="birthYear" />
-        <Record label="Eye Color" field="eyeColor" />
-      </ItemDetails>
-    )
+    // const personDetails = (
+    //   <ItemDetails
+    //     itemId={11}
+    //     getData={getPerson}
+    //     getImageUrl={getPersonImage}>
+    //     <Record label="Gender" field="gender" />
+    //     <Record label="Birth Year" field="birthYear" />
+    //     <Record label="Eye Color" field="eyeColor" />
+    //   </ItemDetails>
+    // )
 
-    const starshipDetails = (
-      <ItemDetails
-        itemId={5}
-        getData={getStarship}
-        getImageUrl={getStarshipImage}>
-        <Record label="Model" field="model" />
-        <Record label="Length" field="length" />
-        <Record label="Cost" field="costInCredits" />
-      </ItemDetails>
-    )
+    // const starshipDetails = (
+    //   <ItemDetails
+    //     itemId={5}
+    //     getData={getStarship}
+    //     getImageUrl={getStarshipImage}>
+    //     <Record label="Model" field="model" />
+    //     <Record label="Length" field="length" />
+    //     <Record label="Cost" field="costInCredits" />
+    //   </ItemDetails>
+    // )
 
     return (
       <>
@@ -92,16 +99,24 @@ export default class App extends React.Component {
         <ErrorButton /> */}
 
         {/* <PeoplePage />  */}
+        <PlanetDetails itemId={4}/>
+        <PeopleDetails itemId={1}/>
+        <StarshipDetails itemId={11}/>
 
-        <div className="row mb-2">
-          <div className="col-md-6">
-            <PersonList
-              onItemSelected={this.onItemSelected}>
-              {(i) => `${i.name}, ${i.gender}, ${i.birthYear}`}
-            </PersonList>
-          </div>
+        <StarshipList>
+          {(i) => `${i.name}, ${i.gender}, ${i.birthYear}`}
+        </StarshipList>
 
-        </div>
+        <PersonList>
+          {(i) => `${i.name}, ${i.gender}, ${i.birthYear}`}
+        </PersonList>
+
+        <PlanetList>
+          {(i) => `${i.name}, ${i.gender}, ${i.birthYear}`}
+        </PlanetList>
+
+
+
         {/* 
         <div className="row mb-2">
           <div className="col-md-6">
@@ -117,7 +132,7 @@ export default class App extends React.Component {
           </div>
         </div> */}
 
-        <Row left={starshipDetails} right={personDetails} />
+        {/* <Row left={starshipDetails} right={personDetails} /> */}
       </>
     );
   };
