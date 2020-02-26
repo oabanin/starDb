@@ -103,17 +103,11 @@ export default class App extends React.Component {
         <PeopleDetails itemId={1}/>
         <StarshipDetails itemId={11}/>
 
-        <StarshipList>
-          {(i) => `${i.name}, ${i.gender}, ${i.birthYear}`}
-        </StarshipList>
+        <StarshipList></StarshipList>
 
-        <PersonList>
-          {(i) => `${i.name}, ${i.gender}, ${i.birthYear}`}
-        </PersonList>
+        <PersonList></PersonList>
 
-        <PlanetList>
-          {(i) => `${i.name}, ${i.gender}, ${i.birthYear}`}
-        </PlanetList>
+        <PlanetList></PlanetList>
 
 
 

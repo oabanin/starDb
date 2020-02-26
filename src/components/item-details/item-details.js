@@ -36,10 +36,19 @@ export default class PersonDetails extends Component {
   }
 
   updatePerson() {
-    const { itemId } = this.props;
+    const { itemId, getData, getImageUrl } = this.props;
     if (!itemId) {
       return
     }
+
+    getData(itemId)
+      .then((item) => {
+        this.setState({
+          person: item,
+          loading:false,
+          image: getImageUrl(item)
+        });
+      });
 
   }
 
