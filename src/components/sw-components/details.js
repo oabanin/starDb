@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Spinner from '../spinner';
 import ItemDetails, {Record} from '../item-details';
 import SwapiService from '../../services/swapi-service';
+import withDetails from '../hoc-helpers/with-details';
 
 const swapiService = new SwapiService();
 
@@ -27,15 +28,17 @@ const PlanetDetails = ({itemId}) => (
   );
 
 
-const PeopleDetails = ({itemId}) => ( <ItemDetails
+let PeopleDetails = withDetails(({itemId}) => ( <ItemDetails
     itemId={itemId}
-    getData={getPerson}
-    getImageUrl={getPersonImage}>
+    //getData={getPerson}
+    //getImageUrl={getPersonImage}
+    >
     <Record label="Gender" field="gender" />
     <Record label="Birth Year" field="birthYear" />
     <Record label="Eye Color" field="eyeColor" />
-  </ItemDetails>);
+  </ItemDetails>), getPerson, getPersonImage);
 
+ //PeopleDetails = withDetails(PeopleDetails)
 
 const StarshipDetails = ({itemId}) => (
     <ItemDetails
@@ -49,7 +52,7 @@ const StarshipDetails = ({itemId}) => (
   );
 
 export {
-    PlanetDetails,
+  PlanetDetails,
     PeopleDetails,
     StarshipDetails
 };
