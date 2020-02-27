@@ -10,6 +10,8 @@ import './app.css';
 import ErrorIndicator from '../error-indicator';
 import PeoplePage from '../people-page';
 import SwapiService from '../../services/swapi-service';
+import {SwapiServiceProvider} from "../swapi-service-context";
+
 
 import {
   PeopleList as PersonList,
@@ -84,7 +86,7 @@ export default class App extends React.Component {
     // )
 
     return (
-      <>
+      <SwapiServiceProvider value={this.swapiService}>
         <Header />
         {/* <PersonList/>
         <PersonDetails/> */}
@@ -127,7 +129,7 @@ export default class App extends React.Component {
         </div> */}
 
         {/* <Row left={starshipDetails} right={personDetails} /> */}
-      </>
+      </SwapiServiceProvider>
     );
   };
 
