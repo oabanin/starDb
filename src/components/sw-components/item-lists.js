@@ -15,11 +15,14 @@ const withChildFunction = (Wrapped, fn) => {
             </Wrapped>);
     };
 }
-const ListWithChildren = withChildFunction(ItemList, ({ name }) => <span>{name}</span>)
 
-const PlanetList = withData(ListWithChildren, getAllPlanets);
-const PeopleList = withData(ListWithChildren, getAllPeople);
-const StarshipList = withData(ListWithChildren, getAllStarships);
+const renderName = ({ name }) => <span>{name}</span>;
+const renderModelAndName = ({model, name}) => <span>{name} ({model})</span>;
+
+
+const PlanetList = withData( withChildFunction(ItemList, renderName), getAllPlanets);
+const PeopleList = withData( withChildFunction(ItemList, renderName), getAllPeople);
+const StarshipList = withData( withChildFunction(ItemList, renderModelAndName), getAllStarships);
 
 export {
     PlanetList,

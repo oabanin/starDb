@@ -105,7 +105,7 @@ export default class App extends React.Component {
 
         <StarshipList></StarshipList>
 
-        <PersonList></PersonList>
+        <PersonList>{name=>name}</PersonList>
 
         <PlanetList></PlanetList>
 
