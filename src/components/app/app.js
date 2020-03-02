@@ -26,7 +26,7 @@ import {
 
 
 export default class App extends React.Component {
-
+  //swapiService = new SwapiService();
   swapiService = new DummySwapiService();
 
   state = {

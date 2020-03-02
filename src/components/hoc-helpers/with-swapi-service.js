@@ -3,7 +3,14 @@ import React, { Component } from 'react';
 import { SwapiServiceConsumer } from '../swapi-service-context';
 
 const withSwapiService = (Wrapped) => {
-    return () => {
-        
+    return (props) => {
+        return (<SwapiServiceConsumer>
+            {(swapiService) => {
+                return <Wrapped {...props} swapiService={swapiService} />
+            }}
+        </SwapiServiceConsumer>)
+
     }
 }
+
+export default withSwapiService;
