@@ -26,14 +26,15 @@ import {
 
 
 export default class App extends React.Component {
-  //swapiService = new SwapiService();
-  swapiService = new DummySwapiService();
+ 
 
   state = {
     showRandomPlanet: true,
     hasError: false,
     selectedPerson: null,
-    selectedPlanet: null
+    selectedPlanet: null,
+     //swapiService = new SwapiService();
+  swapiService : new DummySwapiService()
   };
 
   onItemSelected = (id) => {
@@ -47,6 +48,16 @@ export default class App extends React.Component {
       }
     });
   };
+
+  onServiceChange = ()=> {
+    this.setState(({swapiService})=>{
+      const Service = swapiService instanceof SwapiService ? DummySwapiService : SwapiService;
+      console.log('switched to', Service.name);
+      return {
+        swapiService: new Service()
+      }
+    });
+  }
 
   componentDidCatch() {
     this.setState({ hasError: true });
@@ -62,7 +73,7 @@ export default class App extends React.Component {
       <RandomPlanet /> :
       null;
 
-    const { getPerson, getStarship, getPersonImage, getStarshipImage } = this.swapiService;
+    const { getPerson, getStarship, getPersonImage, getStarshipImage } = this.state.swapiService;
 
     // const personDetails = (
     //   <ItemDetails
@@ -87,8 +98,8 @@ export default class App extends React.Component {
     // )
 
     return (
-      <SwapiServiceProvider value={this.swapiService}>
-        <Header />
+      <SwapiServiceProvider value={this.state.swapiService}>
+        <Header onServiceChange={this.onServiceChange}/>
         {/* <PersonList/>
         <PersonDetails/> */}
 
