@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import Spinner from '../spinner';
+import React from 'react';
 import ItemDetails, { Record } from '../item-details';
 
 import { withSwapiService } from '../hoc-helpers';

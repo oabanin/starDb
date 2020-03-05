@@ -30,7 +30,9 @@ export default class PersonDetails extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.personId !== this.props.personId ||
       prevProps.getData !== this.props.getData ||
-      prevProps.getImageUrl !== this.props.getImageUrl ) {
+      prevProps.getImageUrl !== this.props.getImageUrl ||
+      prevProps.itemId !== this.props.itemId
+      ) {
       this.setState({loading: true});
       this.updatePerson();
     }
