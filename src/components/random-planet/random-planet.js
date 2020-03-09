@@ -9,8 +9,17 @@ import ErrorIndicator from '../error-indicator';
 
 export default class RandomPlanet extends Component {
 
-  defaultProps ={
+  static defaultProps = {
     updateInterval: 10000
+  }
+
+  static propTypes = {
+    updateInterval: (props, propName, componentName) => {
+       const value = props[propName];
+       if(typeof value === 'number' && !isNaN(value)) return null;
+
+       return new TypeError(`${componentName}: ${propName} must be a number`)
+    }
   }
 
   swapiService = new SwapiService();
@@ -27,13 +36,13 @@ export default class RandomPlanet extends Component {
   }
 
 
-  componentDidMount(){
-    const {updateInterval} = this.props;
+  componentDidMount() {
+    const { updateInterval } = this.props;
     this.updatePlanet();  //THis is bad practice - side effects of constructor 
     this.interval = setInterval(this.updatePlanet, updateInterval);
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     clearInterval(this.interval);
   }
 
@@ -81,9 +90,7 @@ export default class RandomPlanet extends Component {
     );
   }
 
-  static defaultProps ={
-    updateInterval: 10000
-  }
+
 }
 
 const PlanetView = ({ planet }) => {
@@ -93,7 +100,7 @@ const PlanetView = ({ planet }) => {
   return (
     <React.Fragment>
       <img className="planet-image"
-      alt={name}
+        alt={name}
         src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} />
       <div>
         <h4>{name}</h4>
