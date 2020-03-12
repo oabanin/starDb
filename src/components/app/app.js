@@ -55,7 +55,7 @@ export default class App extends React.Component {
               <Header onServiceChange={this.onServiceChange} />
               <RandomPlanet />
               <Route path="/" exact render={() => <h2>Welcome to star DB</h2>} />
-              <Route path="/people" component={PeoplePage} />
+              <Route path="/people/:id?" component={PeoplePage} />
               <Route path="/planets" component={PlanetsPage} />
               <Route path="/starships" exact component={StarshipPage} />
               <Route path="/starships/:id" render={({ match }) => {

@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 import Row from '../row';
 
 import {
@@ -6,19 +7,15 @@ import {
     PeopleDetails
 } from '../sw-components';
 
-export default class extends Component {
-    state = {
-        selectedItem: null
-    }
+const PeoplePage = ({ history, match }) => {
 
-    onItemSelected = (selectedItem) => {
-        this.setState({ selectedItem })
-    }
-
-    render() {
+    const {id} = match.params;
+   
         return (
             <Row
-                left={<PersonList onItemSelected={this.onItemSelected} />}
-                right={<PeopleDetails itemId={this.state.selectedItem} />} />);
-    }
+                left={<PersonList onItemSelected={(id) => history.push(id)} />}
+                right={<PeopleDetails itemId={id} />} />);
+    
 }
+
+export default withRouter(PeoplePage);

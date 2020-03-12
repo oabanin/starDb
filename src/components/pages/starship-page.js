@@ -3,6 +3,7 @@ import { StarshipList } from '../sw-components';
 import { withRouter} from 'react-router-dom';
 
 const StarshipsPage = ({history})=> {
+        //console.log(itemId);
         return (<StarshipList onItemSelected={(itemId)=>{
                 history.push(itemId);
         }} />);
