@@ -14,7 +14,8 @@ import {
 
 import {
   BrowserRouter as Router,
-  Route
+  Route,
+  Switch, Redirect
 } from "react-router-dom";
 
 
@@ -50,19 +51,28 @@ export default class App extends React.Component {
     return (
       <ErrorBoundary>
         <SwapiServiceProvider value={this.state.swapiService}>
+
           <Router>
+
             <div className="stardb-app">
+
               <Header onServiceChange={this.onServiceChange} />
               <RandomPlanet />
-              <Route path="/" exact render={() => <h2>Welcome to star DB</h2>} />
-              <Route path="/people/:id?" component={PeoplePage} />
-              <Route path="/planets" component={PlanetsPage} />
-              <Route path="/starships" exact component={StarshipPage} />
-              <Route path="/starships/:id" render={({ match }) => {
-                const { id } = match.params;
-                return <StarshipDetails itemId={id} />
-              }
-              } />
+              <Switch>
+                <Route path="/" exact render={() => <h2>Welcome to star DB</h2>} />
+                <Route path="/people/:id?" component={PeoplePage} />
+                <Route path="/people" render={()=> <p>Ureacheable because of Switch</p>} />
+                <Route path="/planets" component={PlanetsPage} />
+                <Route path="/starships" exact component={StarshipPage} />
+                <Route path="/starships/:id" render={({ match }) => {
+                  const { id } = match.params;
+                  return <StarshipDetails itemId={id} />
+                }
+                } />
+                {/* <Redirect to='/'/> */}
+                <Route render={()=><p>Page not found</p>}/>
+
+              </Switch>
             </div>
           </Router>
         </SwapiServiceProvider>
