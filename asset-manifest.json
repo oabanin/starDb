@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "https://oabanin.github.io/starDb/static/css/main.37a872c5.chunk.css",
-    "main.js": "https://oabanin.github.io/starDb/static/js/main.62f0c207.chunk.js",
-    "main.js.map": "https://oabanin.github.io/starDb/static/js/main.62f0c207.chunk.js.map",
-    "runtime-main.js": "https://oabanin.github.io/starDb/static/js/runtime-main.96510ee4.js",
-    "runtime-main.js.map": "https://oabanin.github.io/starDb/static/js/runtime-main.96510ee4.js.map",
-    "static/js/2.f01955c8.chunk.js": "https://oabanin.github.io/starDb/static/js/2.f01955c8.chunk.js",
-    "static/js/2.f01955c8.chunk.js.map": "https://oabanin.github.io/starDb/static/js/2.f01955c8.chunk.js.map",
-    "index.html": "https://oabanin.github.io/starDb/index.html",
-    "precache-manifest.c404a2f5d99e6c2d3dac533c3776469b.js": "https://oabanin.github.io/starDb/precache-manifest.c404a2f5d99e6c2d3dac533c3776469b.js",
-    "service-worker.js": "https://oabanin.github.io/starDb/service-worker.js",
-    "static/css/main.37a872c5.chunk.css.map": "https://oabanin.github.io/starDb/static/css/main.37a872c5.chunk.css.map",
-    "static/js/2.f01955c8.chunk.js.LICENSE.txt": "https://oabanin.github.io/starDb/static/js/2.f01955c8.chunk.js.LICENSE.txt"
+    "main.css": "/starDb/static/css/main.37a872c5.chunk.css",
+    "main.js": "/starDb/static/js/main.62f0c207.chunk.js",
+    "main.js.map": "/starDb/static/js/main.62f0c207.chunk.js.map",
+    "runtime-main.js": "/starDb/static/js/runtime-main.e29ca01c.js",
+    "runtime-main.js.map": "/starDb/static/js/runtime-main.e29ca01c.js.map",
+    "static/js/2.f01955c8.chunk.js": "/starDb/static/js/2.f01955c8.chunk.js",
+    "static/js/2.f01955c8.chunk.js.map": "/starDb/static/js/2.f01955c8.chunk.js.map",
+    "index.html": "/starDb/index.html",
+    "precache-manifest.f77cc2a8c74c3bc46be98e28ab7b09cb.js": "/starDb/precache-manifest.f77cc2a8c74c3bc46be98e28ab7b09cb.js",
+    "service-worker.js": "/starDb/service-worker.js",
+    "static/css/main.37a872c5.chunk.css.map": "/starDb/static/css/main.37a872c5.chunk.css.map",
+    "static/js/2.f01955c8.chunk.js.LICENSE.txt": "/starDb/static/js/2.f01955c8.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.96510ee4.js",
+    "static/js/runtime-main.e29ca01c.js",
     "static/js/2.f01955c8.chunk.js",
     "static/css/main.37a872c5.chunk.css",
     "static/js/main.62f0c207.chunk.js"
