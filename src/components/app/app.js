@@ -15,7 +15,7 @@ import {
 import {
   BrowserRouter as Router,
   Route,
-  Switch, Redirect
+  Switch
 } from "react-router-dom";
 
 
@@ -52,7 +52,7 @@ export default class App extends React.Component {
       <ErrorBoundary>
         <SwapiServiceProvider value={this.state.swapiService}>
 
-          <Router>
+          <Router basename={process.env.PUBLIC_URL}>
 
             <div className="stardb-app">
 
@@ -61,7 +61,7 @@ export default class App extends React.Component {
               <Switch>
                 <Route path="/" exact render={() => <h2>Welcome to star DB</h2>} />
                 <Route path="/people/:id?" component={PeoplePage} />
-                <Route path="/people" render={()=> <p>Ureacheable because of Switch</p>} />
+                <Route path="/people" render={() => <p>Ureacheable because of Switch</p>} />
                 <Route path="/planets" component={PlanetsPage} />
                 <Route path="/starships" exact component={StarshipPage} />
                 <Route path="/starships/:id" render={({ match }) => {
@@ -70,7 +70,7 @@ export default class App extends React.Component {
                 }
                 } />
                 {/* <Redirect to='/'/> */}
-                <Route render={()=><p>Page not found</p>}/>
+                <Route render={() => <p>Page not found</p>} />
 
               </Switch>
             </div>
